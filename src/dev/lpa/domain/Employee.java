@@ -18,6 +18,11 @@ public class Employee {
 
         @Override
         public int compare(Employee o1, Employee o2) {
+
+            if(sortType.equalsIgnoreCase("yearstarted")){
+                return o1.yearStarted - o2.yearStarted;
+            }
+
             return o1.name.compareTo(o2.name);
         }
     }
