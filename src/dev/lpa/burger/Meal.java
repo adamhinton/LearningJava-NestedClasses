@@ -50,7 +50,18 @@ public class Meal {
 
         // Don't need `static`; that's redundant for enums, interfaces and records
         // Private because it won't be used by client code. Internal use only to Burger.
-        private enum Extra {AVOCADO, BACON, CHEESE, KETCHUP, MAYO, MUSTARD, PICKLES}
+        private enum Extra {
+            AVOCADO, BACON, CHEESE, KETCHUP, MAYO, MUSTARD, PICKLES;
+
+            private double getPrice(){
+                return switch(this){
+                    case AVOCADO -> 1.0;
+                    case BACON, CHEESE -> 1.5;
+                    default -> 0;
+                };
+            }
+
+        }
 
         public double getPrice(){
             return super.price;
@@ -59,7 +70,7 @@ public class Meal {
         private void addToppings(String... selectedToppings){
             for (String selectedTopping : selectedToppings){
                 Extra topping = Extra.valueOf(selectedTopping.toUpperCase());
-                toppings.add(new Item(topping.name(), "TOPPING", 0));
+                toppings.add(new Item(topping.name(), "TOPPING", topping.getPrice()));
             }
         }
 
