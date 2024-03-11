@@ -2,6 +2,9 @@ package dev.lpa.burger;
 
 // Three kinds of item: Burger, Drink, Side
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Meal {
 
 //    base price
@@ -12,6 +15,22 @@ public class Meal {
     private double conversionRate;
 
 
+    public void addBurgerToppings(Burger burger, String... toppings){
+        List<String> toppingsList = new ArrayList<>(List.of(toppings));
+
+        for (String topping : toppings){
+            double priceIncrease = switch(topping){
+                case "bacon" -> 0.50;
+                case "mozzarella" -> 0.75;
+                case "Chick Fil A Sauce" ->0.4;
+                default -> 0;
+            };
+            burger.toppings.add(topping);
+            // TODO: Increase price
+        }
+    }
+
+
     public Meal() {
         // No conversion rate
         this(1);
@@ -19,7 +38,7 @@ public class Meal {
 
     public Meal(double conversionRate) {
         this.conversionRate = conversionRate;
-        burger = new Item("regular", "burger");
+        burger = new Burger("regular");
         drink = new Item("coke", "drink", 1.5);
         System.out.println(drink.name);
         side = new Item("fries", "side", 2.0);
@@ -33,6 +52,25 @@ public class Meal {
     @Override
     public String toString() {
         return "%s%n%s%n%s%n%26s$%.2f".formatted(burger, drink, side, "Total Due: ", getTotal());
+    }
+
+    //CHALLENGE:
+//Make another inner class: Burger
+    // Specialized Item. List of toppings: Also Items
+    // Items have name , type, price and method to convert prices
+    // User can add toppings using Meal class, which it then delegates to burger class
+    // Allow toppings to be added with a mtd that allows variable number of Strings, representing the toppings selected
+    // Toppings are priced differently; some free; some have additional cost
+    // Print toppings with burger info
+
+    private class Burger extends Item{
+
+        private List<Item> toppings = new ArrayList<>();
+
+        // Not declaring this public; access is as restrictive as we can make it.
+        Burger(String name) {
+            super(name, "burger", 5.0);
+        }
     }
 
     private class Item{
@@ -63,6 +101,8 @@ public class Meal {
 
     }
 
-
-
 }
+
+
+
+
