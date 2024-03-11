@@ -34,7 +34,8 @@ public class Main {
                 new StoreEmployee(10215, "Marty", 2018, "Walmart"),
                 new StoreEmployee(10322, "Bud", 2016, "Target")));
 
-        var comparator = new StoreEmployee.StoreComparator<>();
+        var comparator = new StoreEmployee().new StoreComparator<>();
+
         storeEmployees.sort(comparator);
 
         for (StoreEmployee e : storeEmployees){

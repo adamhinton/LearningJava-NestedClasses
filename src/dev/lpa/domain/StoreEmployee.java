@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public class StoreEmployee extends Employee{
 
-    public static class StoreComparator<T extends StoreEmployee> implements Comparator<StoreEmployee> {
+    public class StoreComparator<T extends StoreEmployee> implements Comparator<StoreEmployee> {
         @Override
         public int compare(StoreEmployee o1, StoreEmployee o2) {
             int result = o1.store.compareTo(o2.store);
