@@ -14,23 +14,6 @@ public class Meal {
     private Item side;
     private double conversionRate;
 
-
-    public void addBurgerToppings(Burger burger, String... toppings){
-        List<String> toppingsList = new ArrayList<>(List.of(toppings));
-
-        for (String topping : toppings){
-            double priceIncrease = switch(topping){
-                case "bacon" -> 0.50;
-                case "mozzarella" -> 0.75;
-                case "Chick Fil A Sauce" ->0.4;
-                default -> 0;
-            };
-//            burger.toppings.add(new Item(""));
-            // TODO: Increase price
-        }
-    }
-
-
     public Meal() {
         // No conversion rate
         this(1);
@@ -65,8 +48,19 @@ public class Meal {
 
     private class Burger extends Item{
 
+        // Don't need `static`; that's redundant for enums, interfaces and records
+        // Private because it won't be used by client code. Internal use only to Burger.
+        private enum Extra {AVOCADO, BACON, CHEESE, KETCHUP, MAYO, MUSTARD, PICKLES}
+
         public double getPrice(){
             return super.price;
+        }
+
+        private void addToppings(String... selectedToppings){
+            for (String selectedTopping : selectedToppings){
+                Extra topping = Extra.valueOf(selectedTopping.toUpperCase());
+                toppings.add(new Item(topping.name(), "TOPPING", 0));
+            }
         }
 
         private List<Item> toppings = new ArrayList<>();
@@ -75,6 +69,7 @@ public class Meal {
         Burger(String name) {
             super(name, "burger", 5.0);
         }
+
     }
 
     private class Item{
