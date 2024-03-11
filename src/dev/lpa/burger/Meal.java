@@ -12,6 +12,11 @@ public class Meal {
     private double conversionRate;
 
 
+    public Meal() {
+        // No conversion rate
+        this(1);
+    }
+
     public Meal(double conversionRate) {
         this.conversionRate = conversionRate;
         burger = new Item("regular", "burger");
@@ -20,9 +25,14 @@ public class Meal {
         side = new Item("fries", "side", 2.0);
     }
 
+    private double getTotal(){
+        double total = burger.price + drink.price + side.price;
+        return Item.getPrice(total, conversionRate);
+    }
+
     @Override
     public String toString() {
-        return "%s%n%s%n%s%n".formatted(burger, drink, side);
+        return "%s%n%s%n%s%n%26s$%.2f".formatted(burger, drink, side, "Total Due: ", getTotal());
     }
 
     private class Item{
@@ -43,7 +53,7 @@ public class Meal {
 
         @Override
         public String toString() {
-            return "%10s%15s $%.2f".formatted(type, name, price);
+            return "%10s%15s $%.2f".formatted(type, name, getPrice(price, conversionRate));
         }
 
         // Intended for conversion AUD-USD
