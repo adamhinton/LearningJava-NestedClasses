@@ -8,7 +8,7 @@ public class Store {
         System.out.println(regularMeal);
 
         Meal USRegularMeal = new Meal(0.68);
-        System.out.println(US RegularMeal);
+        System.out.println(USRegularMeal);
 
     }
 

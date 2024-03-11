@@ -9,7 +9,7 @@ public class Meal {
 
 //    base price
     private double price = 5.0;
-    private Item burger;
+    private Burger burger;
     private Item drink;
     private Item side;
     private double conversionRate;
@@ -25,7 +25,7 @@ public class Meal {
                 case "Chick Fil A Sauce" ->0.4;
                 default -> 0;
             };
-            burger.toppings.add(topping);
+//            burger.toppings.add(new Item(""));
             // TODO: Increase price
         }
     }
@@ -45,7 +45,7 @@ public class Meal {
     }
 
     private double getTotal(){
-        double total = burger.price + drink.price + side.price;
+        double total = burger.getPrice() + drink.price + side.price;
         return Item.getPrice(total, conversionRate);
     }
 
@@ -64,6 +64,10 @@ public class Meal {
     // Print toppings with burger info
 
     private class Burger extends Item{
+
+        public double getPrice(){
+            return super.price;
+        }
 
         private List<Item> toppings = new ArrayList<>();
 
