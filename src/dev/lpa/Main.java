@@ -43,6 +43,22 @@ public class Main {
         }
 
 
+        // Local classes
+        // Inner classes, dcl directly in code block
+        // no accessmods
+        // Acc all fields and methods on enclosing class
+        // acc lcoal vars and mtd args that are final or effectively final
+
+
+    }
+
+
+    public static void addPigLatinName(List<? extends StoreEmployee> employeeList){
+
+        // No modifiers, would cause compiler error
+        class DecoratedEmployee extends StoreEmployee{
+
+        }
 
     }
 }
