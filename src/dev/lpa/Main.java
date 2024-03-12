@@ -53,12 +53,29 @@ public class Main {
     }
 
 
+    public Main() {
+    }
+
     public static void addPigLatinName(List<? extends StoreEmployee> employeeList){
 
         // No modifiers, would cause compiler error
         class DecoratedEmployee extends StoreEmployee{
+            private String pigLatinName;
+            private Employee originalInstance;
 
+            public DecoratedEmployee(String pigLatinName, Employee originalInstance) {
+                this.pigLatinName = pigLatinName;
+                this.originalInstance = originalInstance;
+            }
+
+            public String toString(){
+                return originalInstance.toString() + " " + pigLatinName;
+            }
         }
+
+        List<DecoratedEmployee> newList = new ArrayList<>(employeeList.size());
+
+
 
     }
 }
