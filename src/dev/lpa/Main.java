@@ -23,7 +23,7 @@ public class Main {
 
 
         for ( Employee e : employees){
-            System.out.println(e);
+//            System.out.println(e);
         }
 
         System.out.println("Store Members");
@@ -39,8 +39,10 @@ public class Main {
         storeEmployees.sort(comparator);
 
         for (StoreEmployee e : storeEmployees){
-            System.out.println(e);
+//            System.out.println(e);
         }
+
+
 
     }
 }
