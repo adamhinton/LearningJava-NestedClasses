@@ -37,6 +37,10 @@ public class Meal {
         return "%s%n%s%n%s%n%26s$%.2f".formatted(burger, drink, side, "Total Due: ", getTotal());
     }
 
+    public void addToppings(String... selectedToppings){
+         burger.addToppings(selectedToppings);
+    }
+
     //CHALLENGE:
 //Make another inner class: Burger
     // Specialized Item. List of toppings: Also Items
@@ -64,14 +68,40 @@ public class Meal {
         }
 
         public double getPrice(){
-            return super.price;
+
+            // Gets burger's set price without toppings
+            double total = super.price;
+            for(Item topping : toppings){
+                total += topping.price;
+            }
+
+            return total;
         }
 
         private void addToppings(String... selectedToppings){
             for (String selectedTopping : selectedToppings){
-                Extra topping = Extra.valueOf(selectedTopping.toUpperCase());
-                toppings.add(new Item(topping.name(), "TOPPING", topping.getPrice()));
+
+                try{
+                    Extra topping = Extra.valueOf(selectedTopping.toUpperCase());
+                    toppings.add(new Item(topping.name(), "TOPPING", topping.getPrice()));
+                }
+                catch (IllegalArgumentException ie){
+                    System.out.println("No topping found for" + selectedTopping);
+
+                }
+
             }
+        }
+
+        public String toString(){
+            StringBuilder itemized = new StringBuilder(super.toString());
+
+            for (Item topping : toppings){
+                itemized.append("\n");
+                itemized.append(topping);
+            }
+
+            return itemized.toString();
         }
 
         private List<Item> toppings = new ArrayList<>();
