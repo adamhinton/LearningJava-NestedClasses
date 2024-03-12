@@ -90,6 +90,8 @@ public class Main {
             newList.add(new DecoratedEmployee(pigLatin, employee));
         }
 
+        newList.sort(null);
+
         for(var dEmployee : newList){
             System.out.println(dEmployee);
         }
