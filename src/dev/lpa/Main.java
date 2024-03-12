@@ -62,7 +62,7 @@ public class Main {
     public static void addPigLatinName(List<? extends StoreEmployee> employeeList){
 
         // No modifiers, would cause compiler error
-        class DecoratedEmployee extends StoreEmployee{
+        class DecoratedEmployee extends StoreEmployee implements Comparable<DecoratedEmployee>{
             private String pigLatinName;
             private Employee originalInstance;
 
@@ -73,6 +73,12 @@ public class Main {
 
             public String toString(){
                 return originalInstance.toString() + " " + pigLatinName;
+            }
+
+
+            @Override
+            public int compareTo(DecoratedEmployee o) {
+                return pigLatinName.compareTo(o.pigLatinName);
             }
         }
 
@@ -87,6 +93,7 @@ public class Main {
         for(var dEmployee : newList){
             System.out.println(dEmployee);
         }
+
 
 
 
