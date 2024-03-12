@@ -49,6 +49,9 @@ public class Main {
         // Acc all fields and methods on enclosing class
         // acc lcoal vars and mtd args that are final or effectively final
 
+        System.out.println("With pig latin names");
+        addPigLatinName(storeEmployees);
+
 
     }
 
@@ -74,6 +77,16 @@ public class Main {
         }
 
         List<DecoratedEmployee> newList = new ArrayList<>(employeeList.size());
+
+        for(var employee : employeeList){
+            String name = employee.getName();
+            String pigLatin = name.substring(1) + name.charAt(0) + "ay";
+            newList.add(new DecoratedEmployee(pigLatin, employee));
+        }
+
+        for(var dEmployee : newList){
+            System.out.println(dEmployee);
+        }
 
 
 
